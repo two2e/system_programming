@@ -4,6 +4,7 @@
 #include <dirent.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 
 ino_t get_inode(char *);
 void printpathto(ino_t);
@@ -40,6 +41,7 @@ void printpathto(ino_t this_inode) {
 void inum_to_name(ino_t inode_to_find, char *namebuf, int buflen) {
     DIR *dir_ptr;
     struct dirent *direntp;
+    dir_ptr = opendir(".");
     if (dir_ptr == NULL) {
 	perror(".");
 	exit(1);
